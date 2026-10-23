@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "interdot-unet"
+version = "0.1.0"
+description = "U-Net detection of interdot transitions in charge stability diagrams of a double quantum dot."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "scikit-image>=0.21",
+    "matplotlib>=3.7",
+    "torch>=2.2",
+]
+
+[dependency-groups]
+dev = ["pytest", "ruff"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["simulator/csd", "detection"]
+
+[tool.pytest.ini_options]
+pythonpath = ["simulator", "."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
